@@ -9,9 +9,9 @@ ruby RUBY_VERSION
 gem "decidim", DECIDIM_VERSION
 # gem "decidim", path: "../decidim"
 
-# gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
+gem "decidim-conferences", DECIDIM_VERSION
 # gem "decidim-consultations", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
-# gem "decidim-initiatives", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
+gem "decidim-initiatives", DECIDIM_VERSION
 
 gem "decidim-decidim_awesome", "~> 0.7.0"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
