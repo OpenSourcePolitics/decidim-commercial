@@ -332,6 +332,9 @@ GEM
       jquery-tmpl-rails (~> 1.1)
       kaminari (~> 1.2, >= 1.2.1)
       searchlight (~> 4.1)
+    decidim-navigation_maps (1.2.0)
+      decidim-admin (>= 0.24, < 0.25)
+      decidim-core (>= 0.24, < 0.25)
     decidim-pages (0.24.3)
       decidim-core (= 0.24.3)
     decidim-participatory_processes (0.24.3)
@@ -931,6 +934,7 @@ DEPENDENCIES
   decidim (= 0.24.3)
   decidim-decidim_awesome (~> 0.7.0)
   decidim-dev (= 0.24.3)
+  decidim-navigation_maps (~> 1.2.0)
   decidim-question_captcha!
   decidim-term_customizer!
   decidim-url_aliases!
