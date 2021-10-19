@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/OpenSourcePolitics/decidim-module-question_captcha.git
-  revision: 4816914fa58e8b684c8bdf53948475b4193a8c7e
-  branch: master
-  specs:
-    decidim-question_captcha (0.24.3)
-      acts_as_textcaptcha (~> 4.5.1)
-      decidim-core (= 0.24.3)
-
-GIT
   remote: https://github.com/OpenSourcePolitics/decidim-urlaliases.git
   revision: 3527043c1ce2886ef86cd1f34e14d2bef5c759bb
   branch: master
@@ -963,7 +954,6 @@ DEPENDENCIES
   decidim-dev (= 0.24.3)
   decidim-initiatives (= 0.24.3)
   decidim-navigation_maps (~> 1.2.0)
-  decidim-question_captcha!
   decidim-term_customizer!
   decidim-url_aliases!
   dotenv-rails
