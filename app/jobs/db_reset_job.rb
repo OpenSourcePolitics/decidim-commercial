@@ -16,7 +16,11 @@ class DBResetJob < ApplicationJob
 
   def command(dump_file)
     # rubocop:disable Layout/LineLength
-    "psql -c 'SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity'; DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rails db:drop db:create && pg_restore -v -d #{Rails.configuration.database_configuration[Rails.env]["database"]} #{dump_file}"
+    "psql -c 'SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity' ; psql -c 'DROP DATABASE #{database_name}' && psql -c 'CREATE DATABASE #{database_name}' && pg_restore -v -d #{database_name} #{dump_file}"
     # rubocop:enable Layout/LineLength
+  end
+
+  def database_name
+    Rails.configuration.database_configuration[Rails.env]["database"]
   end
 end
