@@ -76,8 +76,8 @@ namespace :decidim do
         Decidim::Surveys::Survey
           .where.not(decidim_component_id: [Decidim::Component.ids])
           .pluck(:id, :title, :decidim_component_id).each do |s|
-            puts s.inspect
-          end
+          puts s.inspect
+        end
         Rails.logger.close
       end
 
@@ -92,6 +92,18 @@ namespace :decidim do
 
         Rails.logger.close
       end
+    end
+
+    desc "Reset a database using a previous dump"
+    task reset: :environment do
+      DBResetJob.perform_now
+    end
+
+    desc "Dump database"
+    task dump: :environment do
+      # rubocop:disable Layout/LineLength
+      system("pg_dump -Fc #{Rails.configuration.database_configuration[Rails.env]["database"]} >./db/dumps/#{Rails.configuration.database_configuration[Rails.env]["database"]}-$(date +%Y%m%d%H%M%S).sql")
+      # rubocop:enable Layout/LineLength
     end
   end
 end

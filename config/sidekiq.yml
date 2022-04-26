@@ -6,6 +6,7 @@
 - newsletter
 - events
 - scheduled
+- reset
 
 :schedule:
   CalculateAllMetrics:
@@ -20,3 +21,7 @@
     every: ['24h', first_in: '1m']
     class: OrdersReminderJob
     queue: scheduled
+  DBReset:
+    cron: '0 0 3 * * *'
+    class: DBResetJob
+    queue: reset
