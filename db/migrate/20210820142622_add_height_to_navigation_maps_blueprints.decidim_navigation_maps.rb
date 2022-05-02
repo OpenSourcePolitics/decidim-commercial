@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_navigation_maps (originally 20210112135817)
 
 class AddHeightToNavigationMapsBlueprints < ActiveRecord::Migration[5.2]

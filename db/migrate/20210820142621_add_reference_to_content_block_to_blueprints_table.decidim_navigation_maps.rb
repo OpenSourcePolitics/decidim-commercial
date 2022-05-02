@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_navigation_maps (originally 20201105130724)
 
 class AddReferenceToContentBlockToBlueprintsTable < ActiveRecord::Migration[5.2]
