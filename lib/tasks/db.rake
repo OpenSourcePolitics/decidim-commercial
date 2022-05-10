@@ -101,9 +101,7 @@ namespace :decidim do
 
     desc "Dump database"
     task dump: :environment do
-      # rubocop:disable Layout/LineLength
-      system("pg_dump -Fc #{Rails.configuration.database_configuration[Rails.env]["database"]} >./db/dumps/#{Rails.configuration.database_configuration[Rails.env]["database"]}-$(date +%Y%m%d%H%M%S).sql")
-      # rubocop:enable Layout/LineLength
+      DBDumpJob.perform_now
     end
   end
 end
