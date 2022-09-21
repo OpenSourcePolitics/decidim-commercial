@@ -8,9 +8,11 @@ ruby RUBY_VERSION
 
 gem "decidim", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 gem "decidim-conferences", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
+gem "decidim-initiatives", git: "https://github.com/decidim/decidim.git", branch: DECIDIM_VERSION
 
 # gem "acts_as_textcaptcha", "~> 4.5.1"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git", branch: "bump/0.25-stable"
+# gem "decidim-extended_socio_demographic_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module-extended_socio_demographic_authorization_handler"
 gem "decidim-friendly_signup", git: "https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git"
 gem "decidim-phone_authorization_handler", git: "https://github.com/OpenSourcePolitics/decidim-module_phone_authorization_handler", branch: "release/0.26-stable"
 # gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha.git", branch: DECIDIM_VERSION
