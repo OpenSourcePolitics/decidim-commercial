@@ -16,6 +16,7 @@ gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-decidim_awesome", "~> 0.7.0"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
 gem "decidim-navigation_maps", "~> 1.2.0"
+gem "decidim-polis", git: "https://github.com/OpenSourcePolitics/decidim-polis"
 # gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha.git", branch: "master"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
 gem "decidim-url_aliases", git: "https://github.com/OpenSourcePolitics/decidim-urlaliases.git", branch: "master"
