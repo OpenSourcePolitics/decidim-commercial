@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/OpenSourcePolitics/decidim-polis
-  revision: 05cb8220749dec87301408245f390a6de4387c1a
+  revision: 82698411dea9eed8946df6522ccb0fed4987b386
   specs:
     decidim-polis (0.24.3)
       decidim-core (= 0.24.3)
@@ -988,7 +988,7 @@ DEPENDENCIES
   web-console (~> 3.5)
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.3.14
