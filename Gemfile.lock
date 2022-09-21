@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/OpenSourcePolitics/decidim-module-extended_socio_demographic_authorization_handler
+  revision: 63cff37b34bc79b9d43cc30f56b02310f5d9ca64
+  branch: ao/cese
+  specs:
+    decidim-extended_socio_demographic_authorization_handler (0.26.2)
+      decidim-core (= 0.26.2)
+
+GIT
   remote: https://github.com/OpenSourcePolitics/decidim-module-friendly_signup.git
   revision: fbf147b5aae425130976807b5ed38f76393439aa
   specs:
@@ -960,6 +968,7 @@ DEPENDENCIES
   decidim-conferences!
   decidim-decidim_awesome (= 0.8.3)
   decidim-dev!
+  decidim-extended_socio_demographic_authorization_handler!
   decidim-friendly_signup!
   decidim-initiatives!
   decidim-phone_authorization_handler!
