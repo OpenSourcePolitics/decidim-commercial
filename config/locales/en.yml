@@ -9,10 +9,6 @@ en:
       participatory_process:
         private_space: Private space
   decidim:
-    resources:
-      initiatives_type:
-        actions:
-          create: Initiative creation
     accessibility:
       skip_button: Skip button
     admin:
@@ -55,6 +51,14 @@ en:
           email_outro: Check the <a href="%{conflicts_path}">Verifications's conflicts list</a> and contact the participant to verify their details and solve the issue.
           email_subject: Failed verification attempt against a managed participant
           notification_title: The participant <a href="%{resource_path}">%{resource_title}</a> has tried to verify themself with the data of the managed participant <a href="%{managed_user_path}">%{managed_user_name}</a>.
+    initiatives:
+      admin:
+        initiatives:
+          edit:
+            success: Success
+      update:
+        error: Error
+        success: Success
     meetings:
       directory:
         meetings:
