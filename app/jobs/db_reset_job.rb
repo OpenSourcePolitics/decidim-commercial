@@ -22,6 +22,8 @@ class DBResetJob < ApplicationJob
       "psql -c 'CREATE DATABASE #{database_name}'",
       "pg_restore -v -d #{database_name} #{dump_file}",
       "psql -c 'ALTER DATABASE #{database_name} allow_connections = on'",
+      "bundle exec rails runner -e #{Rails.env} 'Rails.cache.clear'"
+      "bundle exec rails tmp:cache:clear"
       "bundle exec rails db:migrate"
     ]
   end
