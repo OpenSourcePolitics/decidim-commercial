@@ -19,15 +19,13 @@ describe "Authentication", type: :system do
         within ".new_user" do
           fill_in :registration_user_email, with: "user@example.org"
           fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
           fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("confirmation link")
+        expect(page).to have_content("A message with a code has been sent to your email address.")
       end
     end
 
@@ -44,15 +42,13 @@ describe "Authentication", type: :system do
         within ".new_user" do
           fill_in :registration_user_email, with: "user@example.org"
           fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
           fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
         end
 
-        expect(page).to have_content("Se ha enviado un mensaje con un enlace de confirmación")
+        expect(page).to have_content("Un mensaje con un código ha sido enviado a su dirección de correo electrónico.")
         expect(last_user.locale).to eq("es")
       end
     end
@@ -65,15 +61,13 @@ describe "Authentication", type: :system do
           page.execute_script("$($('.new_user > div > input')[0]).val('Ima robot :D')")
           fill_in :registration_user_email, with: "user@example.org"
           fill_in :registration_user_name, with: "Responsible Citizen"
-          fill_in :registration_user_nickname, with: "responsible"
           fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           check :registration_user_tos_agreement
           check :registration_user_newsletter
           find("*[type=submit]").click
         end
 
-        expect(page).not_to have_content("confirmation link")
+        expect(page).not_to have_content("A message with a code has been sent to your email address.")
       end
     end
 
@@ -241,17 +235,6 @@ describe "Authentication", type: :system do
     end
   end
 
-  describe "Confirm email" do
-    it "confirms the user" do
-      perform_enqueued_jobs { create(:user, organization: organization) }
-
-      visit last_email_link
-
-      expect(page).to have_content("successfully confirmed")
-      expect(last_user).to be_confirmed
-    end
-  end
-
   context "when confirming the account" do
     let!(:user) { create(:user, email_on_notification: true, organization: organization) }
 
@@ -288,7 +271,7 @@ describe "Authentication", type: :system do
       end
 
       expect(emails.count).to eq(2)
-      expect(page).to have_content("receive an email with instructions")
+      expect(page).to have_content("A message with a code has been sent to your email address.")
     end
   end
 
@@ -356,7 +339,6 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           fill_in :password_user_password, with: "DfyvHn425mYAy2HL"
-          fill_in :password_user_password_confirmation, with: "DfyvHn425mYAy2HL"
           find("*[type=submit]").click
         end
 
@@ -369,14 +351,12 @@ describe "Authentication", type: :system do
 
         within ".new_user" do
           fill_in :password_user_password, with: "example"
-          fill_in :password_user_password_confirmation, with: "example"
           find("*[type=submit]").click
         end
 
         expect(page).to have_content("10 characters minimum")
         expect(page).to have_content("must be different from your nickname and your email")
         expect(page).to have_content("must not be too common")
-        expect(page).to have_current_path "/users/password"
       end
     end
 
@@ -580,15 +560,13 @@ describe "Authentication", type: :system do
           within ".new_user" do
             fill_in :registration_user_email, with: user.email
             fill_in :registration_user_name, with: "Responsible Citizen"
-            fill_in :registration_user_nickname, with: "responsible"
             fill_in :registration_user_password, with: "DfyvHn425mYAy2HL"
-            fill_in :registration_user_password_confirmation, with: "DfyvHn425mYAy2HL"
             check :registration_user_tos_agreement
             check :registration_user_newsletter
             find("*[type=submit]").click
           end
 
-          expect(page).to have_content("confirmation link")
+          expect(page).to have_content("A message with a code has been sent to your email address. ")
         end
       end
     end
