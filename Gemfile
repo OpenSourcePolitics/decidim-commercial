@@ -18,7 +18,7 @@ gem "decidim-spam_detection"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "release/0.26-stable"
 gem "decidim-url_aliases", git: "https://github.com/OpenSourcePolitics/decidim-urlaliases.git", branch: "master"
 gem "omniauth-france_connect", git: "https://github.com/OpenSourcePolitics/omniauth-france_connect", branch: "main"
-gem "omniauth-publik", git: "https://github.com/OpenSourcePolitics/omniauth-publik", branch: "v0.0.9"
+gem "omniauth-publik", git: "https://github.com/OpenSourcePolitics/omniauth-publik"
 
 gem "bootsnap", "~> 1.4"
 
