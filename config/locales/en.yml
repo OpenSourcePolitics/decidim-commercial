@@ -62,6 +62,13 @@ en:
         navigation: Navigation
         sign_in: Sign in
         sign_up: Sign up
+        user_menu: User menu
+      social_media_links:
+        facebook: "%{organization} at Facebook"
+        github: "%{organization} at GitHub"
+        instagram: "%{organization} at Instagram"
+        twitter: "%{organization} at Twitter"
+        youtube: "%{organization} at YouTube"
       user_menu:
         account: Account
         conversations: Conversations

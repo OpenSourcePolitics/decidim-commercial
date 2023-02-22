@@ -83,7 +83,12 @@ Decidim.configure do |config|
   #
   # Only needed if you want to have Etherpad integration with Decidim. See
   # Decidim docs at docs/services/etherpad.md in order to set it up.
-  #
+
+  # Enable machine translations
+  config.enable_machine_translations = true
+  config.machine_translation_service = "DeeplTranslator"
+
+  Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
 
   if Rails.application.secrets.etherpad[:server].present?
     config.etherpad = {

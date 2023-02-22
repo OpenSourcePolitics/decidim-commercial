@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-DECIDIM_VERSION = "0.24.3"
+DECIDIM_VERSION = "0.26.5"
 
 ruby RUBY_VERSION
 
@@ -13,11 +13,10 @@ gem "decidim-conferences", DECIDIM_VERSION
 # gem "decidim-consultations", git: "https://github.com/decidim/decidim.git", branch: "release/0.23-stable"
 gem "decidim-initiatives", DECIDIM_VERSION
 
-gem "decidim-decidim_awesome", "~> 0.7.0"
+gem "decidim-decidim_awesome", "~> 0.8.1"
 # gem "decidim-homepage_interactive_map", git: "https://github.com/OpenSourcePolitics/decidim-module-homepage_interactive_map.git"
-gem "decidim-navigation_maps", "~> 1.2.0"
 # gem "decidim-question_captcha", git: "https://github.com/OpenSourcePolitics/decidim-module-question_captcha.git", branch: "master"
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "master"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer.git", branch: "release/0.26-stable"
 gem "decidim-url_aliases", git: "https://github.com/OpenSourcePolitics/decidim-urlaliases.git", branch: "master"
 
 # gem "decidim-calendar", git: "https://github.com/alabs/decidim-module-calendar"
@@ -30,6 +29,8 @@ gem "acts_as_textcaptcha", "~> 4.5.1"
 
 gem "bootsnap", "~> 1.4"
 
+gem "deepl-rb", require: "deepl"
+
 gem "dotenv-rails"
 
 gem "puma", "~> 5.0.0"
@@ -40,8 +41,6 @@ gem "faker", "~> 2.14"
 gem "ruby-progressbar"
 
 gem "letter_opener_web", "~> 1.3"
-
-gem "sprockets", "~> 3.7"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
