@@ -10,31 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_22_135203) do
+ActiveRecord::Schema.define(version: 2023_02_22_165972) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
-
-  create_table "action_mailbox_inbound_emails", force: :cascade do |t|
-    t.integer "status", default: 0, null: false
-    t.string "message_id", null: false
-    t.string "message_checksum", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["message_id", "message_checksum"], name: "index_action_mailbox_inbound_emails_uniqueness", unique: true
-  end
-
-  create_table "action_text_rich_texts", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "body"
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
-  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -390,12 +371,27 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reference"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.bigint "decidim_budgets_budget_id"
     t.date "selected_at"
     t.integer "comments_count", default: 0, null: false
     t.integer "follows_count", default: 0, null: false
     t.index ["decidim_budgets_budget_id"], name: "index_decidim_budgets_projects_on_decidim_budgets_budget_id"
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
+  end
+
+  create_table "decidim_calendar_external_events", force: :cascade do |t|
+    t.jsonb "title", null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.string "url"
+    t.integer "decidim_author_id", null: false
+    t.string "decidim_author_type"
+    t.integer "decidim_organization_id", null: false
+    t.index ["decidim_author_id"], name: "decidim_calendar_external_event_author"
+    t.index ["decidim_organization_id"], name: "decidim_calendar_external_event_organization"
   end
 
   create_table "decidim_categories", id: :serial, force: :cascade do |t|
@@ -471,6 +467,17 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.index ["decidim_user_group_id"], name: "index_decidim_comments_comments_on_decidim_user_group_id"
   end
 
+  create_table "decidim_comparative_stats_endpoints", force: :cascade do |t|
+    t.string "endpoint"
+    t.boolean "active"
+    t.bigint "decidim_organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "api_version"
+    t.index ["decidim_organization_id"], name: "decidim_comparative_stats_constraint_organization"
+  end
+
   create_table "decidim_components", id: :serial, force: :cascade do |t|
     t.string "manifest_name"
     t.jsonb "name"
@@ -479,9 +486,9 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.integer "weight", default: 0
     t.jsonb "permissions"
     t.datetime "published_at"
+    t.string "participatory_space_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "participatory_space_type", null: false
     t.index ["participatory_space_id", "participatory_space_type"], name: "index_decidim_components_on_decidim_participatory_space"
   end
 
@@ -1036,14 +1043,14 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.string "decidim_author_type"
     t.integer "decidim_user_group_id"
     t.integer "comments_count", default: 0, null: false
+    t.string "salt"
     t.string "online_meeting_url"
     t.string "type_of_meeting", default: "in_person"
     t.string "registration_type", default: "registration_disabled", null: false
     t.string "registration_url"
-    t.string "salt"
+    t.integer "follows_count", default: 0, null: false
     t.boolean "customize_registration_email", default: false, null: false
     t.jsonb "registration_email_custom_content"
-    t.integer "follows_count", default: 0, null: false
     t.datetime "published_at"
     t.string "video_url"
     t.string "audio_url"
@@ -1182,6 +1189,54 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.index ["report_count"], name: "decidim_moderations_report_count"
   end
 
+  create_table "decidim_navbar_links", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.jsonb "title"
+    t.string "link"
+    t.string "target"
+    t.integer "weight"
+    t.index ["decidim_organization_id"], name: "index_decidim_navbar_links_on_decidim_organization_id"
+  end
+
+  create_table "decidim_navbar_links_navbar_links", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
+    t.jsonb "title"
+    t.string "link"
+    t.string "target"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_organization_id"], name: "decidim_navbar_links_on_organization_id"
+  end
+
+  create_table "decidim_navigation_maps_blueprint_areas", force: :cascade do |t|
+    t.jsonb "area"
+    t.bigint "decidim_navigation_maps_blueprint_id", null: false
+    t.jsonb "title", default: {}
+    t.jsonb "description", default: {}
+    t.string "area_type"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "link_type"
+    t.string "area_id"
+    t.string "color"
+    t.index ["decidim_navigation_maps_blueprint_id"], name: "decidim_navigation_maps_constraint_blueprint_id"
+  end
+
+  create_table "decidim_navigation_maps_blueprints", force: :cascade do |t|
+    t.string "image"
+    t.bigint "decidim_organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "title", default: {}
+    t.jsonb "description", default: {}
+    t.bigint "decidim_content_block_id"
+    t.integer "height", default: 475, null: false
+    t.index ["decidim_content_block_id"], name: "decidim_navigation_maps_constraint_content_block"
+    t.index ["decidim_organization_id"], name: "decidim_navigation_maps_constraint_organization"
+  end
+
   create_table "decidim_newsletters", id: :serial, force: :cascade do |t|
     t.jsonb "subject"
     t.integer "organization_id"
@@ -1253,15 +1308,16 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.string "id_documents_methods", default: ["online"], array: true
     t.jsonb "id_documents_explanation_text", default: {}
     t.boolean "user_groups_enabled", default: false, null: false
-    t.jsonb "smtp_settings"
     t.jsonb "colors", default: {}
+    t.jsonb "smtp_settings"
+    t.string "deepl_api_key"
     t.boolean "force_users_to_authenticate_before_access_organization", default: false
+    t.integer "comments_max_length", default: 1000
     t.jsonb "omniauth_settings"
     t.boolean "rich_text_editor_in_public_views", default: false
     t.jsonb "admin_terms_of_use_body"
     t.string "time_zone", limit: 255, default: "UTC"
     t.boolean "enable_machine_translations", default: false
-    t.integer "comments_max_length", default: 1000
     t.jsonb "file_upload_settings"
     t.string "machine_translation_display_priority", default: "original", null: false
     t.string "external_domain_whitelist", default: [], array: true
@@ -1454,6 +1510,7 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.integer "decidim_author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "weight"
     t.boolean "temporary", default: false, null: false
     t.index ["decidim_author_id"], name: "decidim_proposals_proposal_vote_author"
     t.index ["decidim_proposal_id", "decidim_author_id"], name: "decidim_proposals_proposal_vote_proposal_author_unique", unique: true
@@ -1479,11 +1536,12 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.integer "position"
     t.string "participatory_text_level"
     t.boolean "created_in_meeting", default: false
-    t.integer "endorsements_count", default: 0, null: false
+    t.boolean "collaborative_draft_origin", default: false
     t.decimal "cost"
     t.jsonb "cost_report"
     t.jsonb "execution_period"
     t.datetime "state_published_at"
+    t.integer "endorsements_count", default: 0, null: false
     t.jsonb "title"
     t.jsonb "body"
     t.integer "comments_count", default: 0, null: false
@@ -1774,6 +1832,8 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.string "personal_url"
     t.text "about"
     t.datetime "accepted_tos_version"
+    t.datetime "officialized_at"
+    t.jsonb "officialized_as"
     t.string "newsletter_token", default: ""
     t.datetime "newsletter_notifications_at"
     t.string "type", null: false
@@ -1784,6 +1844,7 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.datetime "admin_terms_accepted_at"
     t.string "session_token"
     t.string "direct_message_types", default: "all", null: false
     t.boolean "blocked", default: false, null: false
@@ -1791,9 +1852,6 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
     t.integer "block_id"
     t.boolean "email_on_moderations", default: true
     t.integer "follows_count", default: 0, null: false
-    t.datetime "officialized_at"
-    t.jsonb "officialized_as"
-    t.datetime "admin_terms_accepted_at"
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["email", "decidim_organization_id"], name: "index_decidim_users_on_email_and_decidim_organization_id", unique: true, where: "((deleted_at IS NULL) AND (managed = false) AND ((type)::text = 'Decidim::User'::text))"
@@ -1929,10 +1987,14 @@ ActiveRecord::Schema.define(version: 2023_02_22_135203) do
   add_foreign_key "decidim_budgets_orders", "decidim_budgets_budgets"
   add_foreign_key "decidim_budgets_projects", "decidim_budgets_budgets"
   add_foreign_key "decidim_categorizations", "decidim_categories"
+  add_foreign_key "decidim_comparative_stats_endpoints", "decidim_organizations"
   add_foreign_key "decidim_debates_debates", "decidim_scopes"
   add_foreign_key "decidim_editor_images", "decidim_organizations"
   add_foreign_key "decidim_editor_images", "decidim_users", column: "decidim_author_id"
   add_foreign_key "decidim_identities", "decidim_organizations"
+  add_foreign_key "decidim_navigation_maps_blueprint_areas", "decidim_navigation_maps_blueprints"
+  add_foreign_key "decidim_navigation_maps_blueprints", "decidim_content_blocks"
+  add_foreign_key "decidim_navigation_maps_blueprints", "decidim_organizations"
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"
   add_foreign_key "decidim_participatory_processes", "decidim_organizations"
