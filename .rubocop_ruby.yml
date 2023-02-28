@@ -17,6 +17,7 @@ AllCops:
     - "node_modules/**/*"
     - "bin/**/*"
     - "db/schema.rb"
+
   # Default formatter will be used if no -f/--format option is given.
   DefaultFormatter: progress
   # Cop names are not displayed in offense messages by default. Change behavior
@@ -431,6 +432,10 @@ Layout/EmptyLinesAroundModuleBody:
   SupportedStyles:
     - empty_lines
     - no_empty_lines
+
+Layout/EmptyLineAfterMagicComment:
+  Exclude:
+    - "db/migrate/*"
 
 # Checks whether the source file has a utf-8 encoding comment or not
 # AutoCorrectEncodingComment must match the regex

@@ -62,6 +62,13 @@ fr:
         navigation: Navigation
         sign_in: Se connecter
         sign_up: S'inscrire
+        user_menu: Menu utilisateur
+      social_media_links:
+        facebook: "%{organization} sur Facebook"
+        github: "%{organization} sur GitHub"
+        instagram: "%{organization} sur Instagram"
+        twitter: "%{organization} sur Twitter"
+        youtube: "%{organization} sur YouTube"
       user_menu:
         account: Mon compte
         conversations: Conversations

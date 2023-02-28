@@ -71,3 +71,12 @@ terraform.rc
 
 # Ignore .env file
 .env
+
+/public/decidim-packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.rspec-failures
