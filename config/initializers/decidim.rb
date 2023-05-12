@@ -85,7 +85,7 @@ Decidim.configure do |config|
   # Decidim docs at docs/services/etherpad.md in order to set it up.
 
   # Enable machine translations
-  config.enable_machine_translations = true
+  config.enable_machine_translations = Rails.application.secrets.translator[:enabled]
   config.machine_translation_service = "DeeplTranslator"
 
   Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
