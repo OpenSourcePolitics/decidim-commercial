@@ -56,8 +56,8 @@ end
 group :production do
   # gem "rubocop-rails"
   gem "dalli"
-  gem "health_check", "~> 3.1"
   gem "fog-aws"
+  gem "health_check", "~> 3.1"
   gem "lograge"
   gem "newrelic_rpm"
   gem "passenger"
