@@ -43,6 +43,7 @@ Machine translation is configured through the provider [DeepL](https://www.deepl
 In order to make it work these ENV variables need to be configured:
 
 ```
+TRANSLATOR_ENABLED=1
 TRANSLATOR_API_KEY=*******
 TRANSLATOR_HOST=https://api-free.deepl.com
 ```
