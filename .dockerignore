@@ -6,7 +6,6 @@ log
 node_modules
 public/uploads
 .rubocop*
-.overloads
 .erb-lint.yml
 .env-example
 .env
