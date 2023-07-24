@@ -12,6 +12,7 @@ gem "dotenv-rails", require: "dotenv/rails-now"
 
 gem "decidim", "~> #{DECIDIM_VERSION}.0"
 gem "decidim-conferences", "~> #{DECIDIM_VERSION}.0"
+gem "decidim-initiatives", "~> #{DECIDIM_VERSION}.0"
 
 # gem "acts_as_textcaptcha", "~> 4.5.1"
 gem "decidim-decidim_awesome"
