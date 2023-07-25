@@ -83,6 +83,7 @@ translation:
 # Do not consider these keys missing:
 ignore_missing:
  - faker.*
+ - devise.mailer.invitation_instructions.*
 
 # Consider these keys used:
 ignore_unused:

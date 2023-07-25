@@ -64,12 +64,18 @@ en:
         sign_up: Sign up
         user_menu: User menu
       social_media_links:
-        facebook: "%{organization} at Facebook"
-        github: "%{organization} at GitHub"
-        instagram: "%{organization} at Instagram"
-        twitter: "%{organization} at Twitter"
-        youtube: "%{organization} at YouTube"
+        facebook: Facebook
+        github: GitHub
+        instagram: Instagram
+        twitter: Twitter
+        youtube: YouTube
       user_menu:
-        account: Account
+        account: My Account
         conversations: Conversations
         notifications: Notifications
+  rack_attack:
+    too_many_requests:
+      message: It seems that you are making too many requests on our server, your connection has been slowed down.
+      time: 'You will be able to browse our platform again in:'
+      time_unit: seconds
+      title: Thank you for your participation on %{organization_name}
